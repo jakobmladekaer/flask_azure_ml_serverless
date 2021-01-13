@@ -53,7 +53,7 @@ stages:
         make install
         make lint
       workingDirectory: $(projectRoot)
-      displayName: "Run Linting"
+      displayName: 'Run lint tests'
       
 
     - task: ArchiveFiles@2
