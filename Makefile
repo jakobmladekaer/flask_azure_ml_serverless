@@ -8,10 +8,14 @@ install:
 
 test:
 	python -m pytest -vv tests/*.py
+<<<<<<< HEAD
+=======
+	#python -m pytest -vv --cov=myrepolib tests/*.py
+>>>>>>> 77b053dea359521f740393e878426bc6c9e5c2cf
 	#python -m pytest --nbval notebook.ipynb
 
 lint:
 	#hadolint Dockerfile #uncomment to explore linting Dockerfiles
-	pylint --disable=R,C,W1203 app.py
+	pylint --disable=R,C,W1203,W0703 app.py
 
 all: install lint test
