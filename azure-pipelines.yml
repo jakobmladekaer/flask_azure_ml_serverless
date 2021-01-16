@@ -25,6 +25,7 @@ variables:
   # Python version: 3.7
   pythonVersion: '3.7'
 
+# pip install -e .
 stages:
 - stage: Build
   displayName: Build stage
@@ -42,19 +43,23 @@ stages:
         python -m venv antenv
         source antenv/bin/activate
         python -m pip install --upgrade pip
+        pip install pytest pytest-azurepipelines
         pip install setup
         pip install -r requirements.txt
       workingDirectory: $(projectRoot)
       displayName: "Install requirements"
       
     - script: |
-        python -m venv antenv
         source antenv/bin/activate
         make lint
       workingDirectory: $(projectRoot)
       displayName: 'Run lint tests'
-      
 
+    - script: |
+        source antenv/bin/activate
+        make test
+      displayName: 'Run tests with pytest'
+    
     - task: ArchiveFiles@2
       displayName: 'Archive files'
       inputs:
